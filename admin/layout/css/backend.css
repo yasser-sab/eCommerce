@@ -1,0 +1,6 @@
+.asterisk {
+	color:red;
+	font-size:1.5em;
+	position: absolute;
+	transform:translate(.2em,.1em);
+}
