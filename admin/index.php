@@ -10,27 +10,38 @@
 
 
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
-		$user = $_POST["name"];
-		$pwd  = $_POST["password"];
-		$hashpwd = sha1($pwd);
+		// $user = $_POST["name"];
+		// $pwd  = $_POST["password"];
+		// $hashpwd = sha1($pwd);
 
 
 		// check existance
-		$stm=$con->prepare('select userID,Username, Password from users where Username=? and Password=? and GroupeID=1');
-		$stm->execute(array($user,$hashpwd));
-		$row = $stm->fetch();
-		$count = $stm->rowCount();
-
-
-		if($count>0){
-			$_SESSION['ID']=$row['userID'];
-			$_SESSION['user']=$user;
-
-			
-			
+		// ;
+		// print_r($_POST);
+		$_POST['GroupeID']=1;
+		$user = getRecord($_POST,'users');
+		if(!empty($user)){
+			$_SESSION['ID']=$user['userID'];
+			$_SESSION['user']=$user['Username'];
 		}else {
 			redirect("please check password or name","danger");
 		}
+
+		// $stm=$con->prepare('select userID,Username, Password from users where Username=? and Password=? and GroupeID=1');
+		// $stm->execute(array($user,$hashpwd));
+		// $row = $stm->fetch();
+		// $count = $stm->rowCount();
+
+
+		// if($count>0){
+		// 	$_SESSION['ID']=$row['userID'];
+		// 	$_SESSION['user']=$user;
+
+			
+			
+		// }else {
+		// 	redirect("please check password or name","danger");
+		// }
 	}
 	if(isset($_SESSION['user']))
 	{
@@ -39,17 +50,15 @@
 	}
 
 ?>
-
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+	<form class="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+		<h1><?php echo lang('ADMIN_LOGIN');?></h1>
 		<label>
-			<?php echo lang('NAME'); ?> :
-			<input type="text" name="name" placeholder="name" autocomplete="off" value="yasser">
-		</label><br> 
+			<input class="form-control" type="text" name="Username" placeholder="<?php echo lang('NAME');?>" autocomplete="off" value="yasser">
+		</label>
 		<label>
-			<?php echo lang('PASSWORD'); ?> :
-			<input type="password" name="password" placeholder="password" autocomplete="new-password" value="123456">
-		</label><br>
-		<input type="submit" value="<?php echo lang('LOGIN'); ?>">
+			<input class="form-control" type="password" name="Password" placeholder="<?php echo lang('PASSWORD');?>" autocomplete="new-password" value="123456">
+		</label>
+		<input class="btn btn-primary" type="submit" value="<?php echo lang('LOGIN'); ?>">
 	</form>
 
 <?php 

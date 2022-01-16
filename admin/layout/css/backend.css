@@ -4,3 +4,39 @@
 	position: absolute;
 	transform:translate(.2em,.1em);
 }
+
+body {
+	min-height: 100vh;
+	background-color: lightgrey;
+}
+.login {
+	width: 25%;
+	text-align: center;
+	color:#6198c7;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	transform: translate(-50%,-50%);
+}
+
+.login label {
+	display: block;
+}
+
+.login input {
+	outline: none !important;
+	border:none;
+	box-shadow: 0;
+	width: 100%;
+}
+
+.login .form-control{
+	outline: none;
+	background-color: #ebebeb;
+	margin-bottom: 1em;
+	color:inherit;
+}
+
+.login .btn {
+	background-color:#6198c7;
+}

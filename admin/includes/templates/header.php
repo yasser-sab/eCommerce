@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="AR">
 <head>
 	<title><?php getTitle();?></title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -10,3 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo $css;?>backend.css">
 </head>
 <body>
+<!-- 	<select>
+		<option>ar</option>
+		<option>en</option>
+	</select> -->
