@@ -14,6 +14,14 @@
 			'USER_NAME'=>'user name',
 			'EDIT' => 'edit',
 			'PASSWORD' => 'password',
+
+			//item page
+
+			'ADD_ITEMS'=>'add new item',
+			'Add_Date' => 'add date',
+			'Country_Made' => 'country',
+			'FK_categories' => 'categorie',
+			'FK_users' => 'user'
 		);
 		return array_key_exists($key, $lang)?
 		$lang[$key]:$key;

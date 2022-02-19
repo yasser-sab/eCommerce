@@ -12,7 +12,7 @@
 					<a href="members.php?do=manage">
 						<div class="stat">
 							<span>count members : 
-								<?php echo countTable('userID','users'); ?>		
+								<?php echo countTable('ID','users'); ?>		
 							</span>
 						</div>
 					</a>
@@ -39,13 +39,13 @@
 		<div class="container">
 			<div>
 				<?php
-					$latest = getLatest("*","users","userID",3);
+					$latest = getLatest("*","users","ID",3);
 				 ?>
 				<h3>latest <?php echo count($latest); ?> user registrated</h3>
 				<?php
 					foreach ($latest as $row) {
 						echo "<div>";
-						echo $row['Username']." <a href='members.php?do=edit&userId=".$row['userID']."'>edit</a>";
+						echo $row['Name']." <a href='members.php?do=edit&userId=".$row['ID']."'>edit</a>";
 						echo "</div>";
 					}
 				?>

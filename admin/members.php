@@ -18,12 +18,12 @@
 			manage("users",$query);
 
 		}elseif($do == 'add'){
-				add_form('users',2);
+				add_form('users',3);
 
 		}elseif($do=='insert') {
 			if($_SERVER['REQUEST_METHOD']=='POST'){
 				try {
-					if(!find('Username','users',$_POST['Username'])){
+					if(!find('Name','users',$_POST['Name'])){
 						$_POST['Password']=sha1($_POST['Password']);
 						if(insert('users',$_POST)>0){
 							redirect("user added success",'success','back');
@@ -42,7 +42,7 @@
 		}elseif($do=='edit') {
 
 			$userId = isset($_GET['userId']) && is_numeric($_GET['userId'])?intval($_GET['userId']):0;
-			$user = getRecord('userID','users',$userId);
+			$user = getRecord('ID','users',$userId);
 			
 			if(!empty($user)) {
 				edit_form('users',$user,3);
@@ -88,12 +88,12 @@
 
 			<h1>delete member</h1>
 
-			<?php $userId = isset($_GET['userId']) && is_numeric($_GET['userId'])?intval($_GET['userId']):0;
+			<?php $userId = isset($_GET['ID']) && is_numeric($_GET['ID'])?intval($_GET['ID']):0;
 
-			if(find('userID','users',$userId)) {
+			if(find('ID','users',$userId)) {
 
 				try{
-					if(delete('users',array('userID'=>$userId))>0){
+					if(delete('users',array('ID'=>$userId))>0){
 						redirect('deleted success','success','back');
 					}else {
 						redirect('deleted fail','danger','back');
@@ -107,10 +107,10 @@
 
 		}elseif($do=='activate') {
 
-			$userId = isset($_GET['userId']) && is_numeric($_GET['userId'])?intval($_GET['userId']):0;
+			$userId = isset($_GET['ID']) && is_numeric($_GET['ID'])?intval($_GET['ID']):0;
 
-			if(find('userID','users',$userId)){
-				if(update('users',array('userID'=>$userId,'RegStatus'=>1))>0){
+			if(find('ID','users',$userId)){
+				if(update('users',array('ID'=>$userId,'RegStatus'=>1))>0){
 					redirect('user updated success','success','back');
 				}else {
 					redirect('user not updated !','danger','back');

@@ -19,10 +19,11 @@
 		// ;
 		// print_r($_POST);
 		$_POST['GroupeID']=1;
+		print_r($_POST);
 		$user = getRecord($_POST,'users');
 		if(!empty($user)){
-			$_SESSION['ID']=$user['userID'];
-			$_SESSION['user']=$user['Username'];
+			$_SESSION['ID']=$user['ID'];
+			$_SESSION['user']=$user['Name'];
 		}else {
 			redirect("please check password or name","danger");
 		}
@@ -53,7 +54,7 @@
 	<form class="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 		<h1><?php echo lang('ADMIN_LOGIN');?></h1>
 		<label>
-			<input class="form-control" type="text" name="Username" placeholder="<?php echo lang('NAME');?>" autocomplete="off" value="yasser">
+			<input class="form-control" type="text" name="Name" placeholder="<?php echo lang('NAME');?>" autocomplete="off" value="yasser">
 		</label>
 		<label>
 			<input class="form-control" type="password" name="Password" placeholder="<?php echo lang('PASSWORD');?>" autocomplete="new-password" value="123456">

@@ -13,8 +13,8 @@
 
 	// important files
 
-	// include $lang . "en.php";
-	include $lang . "ar.php";
+	include $lang . "en.php";
+	// include $lang . "ar.php";
 	include $func . "functions.php";
 	include $tpl . "header.php";
 

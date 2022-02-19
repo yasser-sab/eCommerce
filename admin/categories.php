@@ -13,47 +13,16 @@
 
 			case 'add':
 				add_form('categories',6);
-			?>
-
-				<!-- <h1>add page</h1> -->
-
-				<!-- <form action="?do=insert" method="POST">
-					<label>
-						name :
-						<input type="text" name="Name" placeholder="Name" required="required">
-					</label><br>
-					<label>
-						Description :
-						<textarea name="Description" required="" autocomplete="off">
-							
-						</textarea>
-					</label><br>
-					<label>
-						Ordering :
-						<input type="number" name="Ordering" required="" autocomplete="off">
-					</label><br>
-					<fieldset>
-						<label>
-							visibilite :
-							<input type="checkbox" name="Visibility" value="1">
-						</label><br>
-						<label>
-							allow comments :
-							<input type="checkbox" name="Allow_Comment" value="1">
-						</label><br>
-						<label>
-							allow ads :
-							<input type="checkbox" name="Allow_ads" value="1">
-						</label><br>
-					</fieldset>
-					<input type="submit" value='add'>
-				</form> -->
-			<?php break;
+			break;
 
 			case 'insert':
 				if($_SERVER['REQUEST_METHOD']==='POST'){
 					try {
-						insert('categories',$_POST);
+						if(!empty(insert('categories',$_POST))){
+							redirect('categorie added success !','success','back');
+						}else {
+							redirect('categorie failed','danger','back');
+						}
 					}catch(PDOException $e){
 						echo $e->getMessage();
 					}
@@ -64,12 +33,12 @@
 			break;
 
 			case 'edit':
-				$id = isset($_GET['catId']) && is_numeric($_GET['catId'])?intval($_GET['catId']):0;	
-				if(find('ID','categories',$id)){
-					$row = getRecord('ID','categories',$id);
+				$ID = $_GET['ID'] && is_numeric($_GET['ID']) ?$_GET['ID']:0;
+				if(find('ID','categories',$ID)){
+					$row = getRecord('ID','categories',$ID);
 
 					if(!empty($row)) {
-						edit_form('categories',$row);
+						edit_form('CATEGORIES',$row);	
 					}else{
 						redirect('user dosen\'t exist','danger');
 					}	
@@ -80,10 +49,14 @@
 
 			case 'update':
 				if($_SERVER['REQUEST_METHOD']=='POST'){
-					// $pass=empty($_POST['Password'])?$_POST['oldpassword']:sha1($_POST['Password']);
-					// unset($_POST['oldpassword']);
 
-					// $_POST['Password']=$pass;
+					if(isset($_POST['Password'])){
+						$pass=empty($_POST['Password'])?$_POST['oldpassword']:sha1($_POST['Password']);
+						unset($_POST['oldpassword']);
+
+						$_POST['Password']=$pass;
+					}
+					
 					$errors=array();
 
 					// if(empty($_POST['username'])) {
@@ -92,12 +65,14 @@
 					// if(empty($_POST['newpassword'])){
 					// 	$errors[]="password can't be null";
 					// }
+
 					if(empty($errors)){
-						if(update('categories',$_POST)>0){
-							redirect('categorie added success','success','back');
-						}else{
-							redirect('no row updated error','danger','back');
-						}
+						update('categories',$_POST);
+						// if(update('categories',$_POST)>0){
+						// 	redirect('categorie added success','success','back');
+						// }else{
+						// 	redirect('no row updated error','danger','back');
+						// }
 					}else{
 						foreach ($errors as $error) {
 							echo "<div class='alert alert-danger'>".$error."</div></br>";

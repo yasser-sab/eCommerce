@@ -48,6 +48,11 @@
 				//edit section
 
 			'EDIT_CATEGORIES'=>'تعديل الفئة',
+
+
+			//items page
+
+			'ITEMS' => 'أغراض',
 		);
 		return array_key_exists(strtoupper($key), $lang)?
 		$lang[strtoupper($key)]:$key;

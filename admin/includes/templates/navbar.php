@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="categories.php"><?php echo lang('CATEGORIES'); ?></a></li>
+        <li><a href="items.php"><?php echo lang('ITEMS'); ?></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
